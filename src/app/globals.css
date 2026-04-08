@@ -1,0 +1,239 @@
+@import url('https://fonts.googleapis.com/css2?family=Graduate&family=Lato:ital,wght@0,400;0,700;1,400&family=Comic+Relief:wght@400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-size: 16px;
+}
+
+html {
+  font-size: var(--font-size);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #ffffff;
+  color: #232323;
+}
+
+@keyframes marquee-roll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.wgg-marquee {
+  animation: marquee-roll 40s linear infinite;
+  display: flex;
+  width: fit-content;
+}
+
+.wgg-card-hover {
+  transition: transform 0.25s ease;
+}
+
+.wgg-card-hover:hover {
+  transform: translateY(-4px);
+}
+
+.wgg-btn-primary:hover {
+  background-color: #c0000e !important;
+}
+
+.star-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.star-btn:hover {
+  transform: scale(1.15);
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+  .wgg-btn-primary {
+    font-size: 14px !important;
+    padding: 14px 24px !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .wgg-location-tag {
+    font-size: 11px !important;
+    padding: 4px 10px !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .wgg-btn-primary {
+    font-size: 13px !important;
+    padding: 12px 20px !important;
+  }
+  
+  .wgg-location-tag {
+    font-size: 10px !important;
+    padding: 3px 8px !important;
+  }
+}
+
+/* Desktop/Tablet Specific Styles - Ensure proper padding on larger screens */
+@media (min-width: 769px) {
+  .wgg-btn-primary {
+    font-size: 15px !important;
+    padding: 14px 36px !important;
+  }
+  
+  .wgg-location-tag {
+    font-size: 13px !important;
+    padding: 6px 16px !important;
+  }
+}
+
+/* Map Container - Reliable Side-by-Side Layout */
+.wgg-map-container {
+  display: flex;
+  min-height: 600px;
+  margin: 0 auto;
+  max-width: 1400px;
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+}
+
+.wgg-map-sidebar {
+  width: clamp(300px, 40%, 440px);
+  flex-shrink: 0;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #E8E8E8;
+}
+
+.wgg-map-panel {
+  flex: 1;
+  min-width: 300px;
+  min-height: 400px;
+  position: relative;
+  background: #f8f8f8;
+}
+
+/* Mobile Stacking */
+@media (max-width: 768px) {
+  .wgg-map-container {
+    flex-direction: column !important;
+    min-height: auto !important;
+    max-width: 100%;
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  
+  .wgg-map-sidebar {
+    width: 100% !important;
+    max-height: 400px;
+    order: 1;
+    border-right: none;
+    border-bottom: 1px solid #E8E8E8;
+  }
+  
+  .wgg-map-panel {
+    min-height: 350px !important;
+    order: 2;
+  }
+}
+
+@media (max-width: 640px) {
+  .wgg-map-container {
+    margin: 0 12px !important;
+    min-height: auto !important;
+  }
+  
+  .wgg-map-sidebar {
+    max-height: 350px;
+    order: 1;
+  }
+  
+  .wgg-map-panel {
+    min-height: 300px !important;
+    order: 2;
+  }
+}
+
+/* Further reduce spacing on small mobile */
+@media (max-width: 640px) {
+  section {
+    padding: 40px 12px !important;
+  }
+  
+  .wgg-mobile-padding {
+    padding: 0 12px !important;
+  }
+  
+  .wgg-mobile-margin {
+    margin: 0 12px !important;
+  }
+}
+
+/* Enhanced mobile map styles */
+@media (max-width: 480px) {
+  .wgg-map-sidebar {
+    max-height: 300px;
+  }
+  
+  .wgg-map-panel {
+    min-height: 250px !important;
+  }
+  
+  .wgg-map-container {
+    flex-direction: column !important;
+    min-height: 400px !important;
+    margin: 0 8px !important;
+  }
+  
+  .wgg-map-sidebar {
+    width: 100% !important;
+    max-height: 300px;
+  }
+  
+  .wgg-map-panel {
+    min-height: 250px !important;
+  }
+  
+  /* Further reduce spacing on small mobile */
+  section {
+    padding: 30px 8px !important;
+  }
+  
+  .wgg-mobile-margin {
+    margin: 0 8px !important;
+  }
+}
+
+/* Custom scrollbar styling */
+.wgg-map-sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.wgg-map-sidebar::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.wgg-map-sidebar::-webkit-scrollbar-thumb {
+  background: #EC1C24;
+  border-radius: 3px;
+}
+
+.wgg-map-sidebar::-webkit-scrollbar-thumb:hover {
+  background: #A70016;
+}
