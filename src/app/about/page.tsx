@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     'Meet Thomas & Norma Bynum — the founders of Wize Guyz Grille. Learn our story, our manifesto, and find all four locations across Western North Carolina.',
 };
 
-const IMG_OWNERS = 'https://images.unsplash.com/photo-1683619871228-9e5babf14e91?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080';
+const IMG_OWNERS = '/images/Thomas_and_Norma.webp';
 
 const sisterBrands = [
   { name: "Mabel's Kitchen", desc: 'Southern comfort food done right. Home-style plates with all the fixings.', address: 'Bryson City, NC', color: '#A70016', img: '/images/mabels.png', url: 'https://mabelskitchennc.com' },
@@ -159,15 +159,17 @@ export default function About() {
           </p>
         </Reveal>
         <Reveal delay={0.28}>
-          <a href="#" style={{ fontFamily: "'Lato', sans-serif", fontWeight: 700, fontSize: '15px', backgroundColor: '#fff', color: '#A70016', padding: '18px 40px', borderRadius: '9999px', textDecoration: 'none', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
-            Order Now
+          <a href="/store-locator" style={{ fontFamily: "'Lato', sans-serif", fontWeight: 700, fontSize: '15px', backgroundColor: '#fff', color: '#A70016', padding: '18px 40px', borderRadius: '9999px', textDecoration: 'none', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+            Call Now
           </a>
         </Reveal>
       </section>
 
       {/* LOCATION FINDER */}
       <section style={{ backgroundColor: '#232323' }}>
-        <StoreLocator />
+        <div className="pt-16">
+          <StoreLocator />
+        </div>
       </section>
     </div>
   );

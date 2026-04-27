@@ -1,10 +1,12 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Star, Flame, Clock, Award, ChevronRight, ExternalLink } from 'lucide-react';
+import { Star, Flame, Clock, Award, ChevronRight, ExternalLink, MapPin } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { Reveal } from '@/components/Reveal';
 import StoreLocator from '@/components/StoreLocator';
+import LocationCards from '@/components/LocationCards';
+import FeaturedCard from '@/components/FeaturedCard';
 
 export const metadata: Metadata = {
   title: 'Big Flavor. Real Beef. No Shortcuts.',
@@ -58,6 +60,14 @@ const sisterBrands = [
   { name: 'All Fried Up', desc: 'Fried everything. Funnels to fish, corn dogs to cheese curds. Oh yeah.', address: 'Whittier, NC', color: '#EC1C24', img: '/images/all-fried-up.png', url: 'https://allfriedupnc.com' },
 ];
 
+// Location URLs matching StoreLocator data
+const locationUrls = {
+  'Cherokee': 'https://maps.app.goo.gl/hfUs6uLTBcqa346j8',
+  'Bryson City': 'https://maps.app.goo.gl/ns5WcLkh2SjVwQHM7',
+  'Deep Creek': 'https://maps.app.goo.gl/E5GoMPKNQoWZziiP6',
+  'Whittier': 'https://maps.app.goo.gl/vbDUTVnBiDN2GPZr6',
+};
+
 export default function Home() {
   return (
     <div>
@@ -82,21 +92,47 @@ export default function Home() {
             </p>
           </Reveal>
           <Reveal delay={0.55}>
-            <a href="#" className="wgg-btn-primary" style={{ fontFamily: "'Lato', sans-serif", fontWeight: 700, backgroundColor: '#EC1C24', color: '#fff', borderRadius: '9999px', textDecoration: 'none', textTransform: 'uppercase', letterSpacing: '0.08em', boxShadow: '0 4px 20px rgba(236,28,36,0.5)', transition: 'background-color 0.2s' }}>
-              Order Now
-            </a>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full px-4">
+              <a href="/store-locator" className="w-full sm:w-auto wgg-btn-primary" style={{ fontFamily: "'Lato', sans-serif", fontWeight: 700, backgroundColor: '#EC1C24', color: '#fff', borderRadius: '9999px', textDecoration: 'none', textTransform: 'uppercase', letterSpacing: '0.08em', boxShadow: '0 4px 20px rgba(236,28,36,0.5)', transition: 'background-color 0.2s' }}>
+                Call Now
+              </a>
+              <Link href="/menu" className="w-full sm:w-auto wgg-btn-secondary" style={{ fontFamily: "'Lato', sans-serif", fontWeight: 700, backgroundColor: 'transparent', color: '#fff', border: '2px solid #fff', borderRadius: '9999px', textDecoration: 'none', textTransform: 'uppercase', letterSpacing: '0.08em', transition: 'all 0.2s', padding: '16px 40px' }}>
+                View Menu
+              </Link>
+            </div>
           </Reveal>
           <Reveal delay={0.65}>
             <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', justifyContent: 'center', marginTop: '32px' }}>
               {['Cherokee', 'Bryson City', 'Deep Creek', 'Whittier'].map((loc) => (
-                <span key={loc} className="wgg-location-tag" style={{ fontFamily: "'Lato', sans-serif", fontWeight: 700, color: '#fff', backgroundColor: 'rgba(255,255,255,0.15)', border: '1px solid rgba(255,255,255,0.3)', borderRadius: '9999px', letterSpacing: '0.05em' }}>
+                <a 
+                  key={loc} 
+                  href={locationUrls[loc as keyof typeof locationUrls]} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="wgg-location-tag" 
+                  style={{ 
+                    fontFamily: "'Lato', sans-serif", 
+                    fontWeight: 700, 
+                    color: '#fff', 
+                    backgroundColor: 'rgba(255,255,255,0.15)', 
+                    border: '1px solid rgba(255,255,255,0.3)', 
+                    borderRadius: '9999px', 
+                    letterSpacing: '0.05em',
+                    textDecoration: 'none',
+                    display: 'inline-block',
+                    transition: 'all 0.2s ease'
+                  }}
+                >
                   📍 {loc}
-                </span>
+                </a>
               ))}
             </div>
           </Reveal>
         </div>
       </section>
+
+      {/* LOCATION CARDS */}
+      <LocationCards />
 
       {/* WHAT'S HOT RIGHT NOW */}
       <section style={{ backgroundColor: '#232323', padding: '88px 24px' }}>
@@ -114,28 +150,14 @@ export default function Home() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '28px' }}>
             {specials.map((item, i) => (
               <Reveal key={item.label} delay={i * 0.12} direction="up">
-                <div className="wgg-card-hover" style={{ backgroundColor: '#2e2e2e', borderRadius: '12px', overflow: 'hidden', border: '1px solid #333' }}>
-                  <div style={{ position: 'relative', height: '220px', overflow: 'hidden' }}>
-                    <Image src={item.img} alt={item.label} fill style={{ objectFit: 'cover' }} />
-                    <div style={{ position: 'absolute', top: '12px', left: '12px', backgroundColor: '#EC1C24', color: '#fff', fontFamily: "'Lato', sans-serif", fontWeight: 700, fontSize: '11px', padding: '4px 12px', borderRadius: '9999px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                      {item.tag}
-                    </div>
-                  </div>
-                  <div style={{ padding: '24px' }}>
-                    <h3 style={{ fontFamily: "'Graduate', serif", color: '#fff', fontSize: '17px', margin: '0 0 12px', lineHeight: 1.3 }}>{item.label}</h3>
-                    <p style={{ fontFamily: "'Lato', sans-serif", color: '#bbb', fontSize: '14px', lineHeight: 1.65, margin: '0 0 20px' }}>{item.desc}</p>
-                    <a href="#" style={{ display: 'inline-block', fontFamily: "'Lato', sans-serif", fontWeight: 700, fontSize: '13px', backgroundColor: '#EC1C24', color: '#fff', padding: '10px 22px', borderRadius: '9999px', textDecoration: 'none', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                      Order Now
-                    </a>
-                  </div>
-                </div>
+                <FeaturedCard item={item} />
               </Reveal>
             ))}
           </div>
           <Reveal delay={0.2}>
             <div style={{ textAlign: 'center', marginTop: '40px' }}>
-              <Link href="/menu" style={{ fontFamily: "'Lato', sans-serif", fontWeight: 700, fontSize: '14px', color: '#FFBF31', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '6px', borderBottom: '1px solid #FFBF31', paddingBottom: '2px' }}>
-                Order Now <ChevronRight size={16} />
+              <Link href="/store-locator" style={{ fontFamily: "'Lato', sans-serif", fontWeight: 700, fontSize: '14px', color: '#FFBF31', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '6px', borderBottom: '1px solid #FFBF31', paddingBottom: '2px' }}>
+                Call Now <ChevronRight size={16} />
               </Link>
             </div>
           </Reveal>
@@ -223,15 +245,20 @@ export default function Home() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '28px', marginBottom: '48px' }}>
             {sisterBrands.map((brand, i) => (
               <Reveal key={brand.name} delay={i * 0.12} direction="up">
-                <a href={brand.url} target="_blank" rel="noreferrer" className="wgg-card-hover" style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid #E8E8E8', boxShadow: '0 4px 20px rgba(0,0,0,0.07)', textDecoration: 'none', display: 'block' }}>
+                <a href={brand.url} target="_blank" rel="noreferrer" className="wgg-card-hover flex flex-col h-full" style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid #E8E8E8', boxShadow: '0 4px 20px rgba(0,0,0,0.07)', textDecoration: 'none', display: 'flex' }}>
                   <div style={{ height: '8px', backgroundColor: brand.color }} />
-                  <div style={{ padding: '32px' }}>
+                  <div style={{ padding: '32px', flex: '1', display: 'flex', flexDirection: 'column' }}>
                     <div style={{ margin: '-32px -32px 24px -32px', overflow: 'hidden', height: '200px', position: 'relative' }}>
                       <Image src={brand.img} alt={brand.name} fill style={{ objectFit: 'cover', objectPosition: 'center' }} />
                     </div>
-                    <h3 style={{ fontFamily: "'Graduate', serif", color: '#232323', fontSize: '20px', margin: '0 0 12px' }}>{brand.name}</h3>
-                    <p style={{ fontFamily: "'Lato', sans-serif", fontSize: '14px', color: '#555', lineHeight: 1.7, margin: '0 0 16px' }}>{brand.desc}</p>
-                    <div style={{ fontFamily: "'Lato', sans-serif", fontWeight: 700, fontSize: '13px', color: '#aaa' }}>📍 {brand.address}</div>
+                    <div style={{ flex: '1', display: 'flex', flexDirection: 'column' }}>
+                      <h3 style={{ fontFamily: "'Graduate', serif", color: '#232323', fontSize: '20px', margin: '0 0 12px' }}>{brand.name}</h3>
+                      <p style={{ fontFamily: "'Lato', sans-serif", fontSize: '14px', color: '#555', lineHeight: 1.7, margin: '0 0 16px', flex: '1' }}>{brand.desc}</p>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontFamily: "'Lato', sans-serif", fontWeight: 700, fontSize: '13px', color: '#aaa', marginTop: 'auto' }}>
+                      <MapPin size={14} style={{ color: '#EC1C24' }} />
+                      {brand.address}
+                    </div>
+                    </div>
                   </div>
                 </a>
               </Reveal>
@@ -260,15 +287,17 @@ export default function Home() {
           </p>
         </Reveal>
         <Reveal delay={0.28}>
-          <a href="#" style={{ fontFamily: "'Lato', sans-serif", fontWeight: 700, fontSize: '15px', backgroundColor: '#fff', color: '#A70016', padding: '18px 40px', borderRadius: '9999px', textDecoration: 'none', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
-            Order Now
+          <a href="/store-locator" style={{ fontFamily: "'Lato', sans-serif", fontWeight: 700, fontSize: '15px', backgroundColor: '#fff', color: '#A70016', padding: '18px 40px', borderRadius: '9999px', textDecoration: 'none', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+            Call Now
           </a>
         </Reveal>
       </section>
 
       {/* LOCATION FINDER */}
       <section style={{ backgroundColor: '#232323' }}>
-        <StoreLocator />
+        <div className="pt-16">
+          <StoreLocator />
+        </div>
       </section>
     </div>
   );

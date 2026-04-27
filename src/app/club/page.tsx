@@ -3,11 +3,7 @@ import Image from 'next/image';
 import { Tag, CalendarDays, Gift, Users, Instagram, Facebook } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { Reveal } from '@/components/Reveal';
-
-export const metadata: Metadata = {
-  title: 'Wize Guyz Club',
-  description: 'Join the Wize Guyz Club for exclusive deals, early access to events, birthday rewards, and more. Get first dibs on everything.',
-};
+import ClubForm from '@/components/ClubForm';
 
 // Type definitions for Instagram post data
 interface InstagramPost {
@@ -72,7 +68,8 @@ async function getInstagramData(): Promise<InstagramData | null> {
 }
 
 export default async function ClubPage() {
-  const instagramData = await getInstagramData();
+  // Temporarily disable Instagram feed due to API rate limits
+  const instagramData: InstagramData | null = null;
 
   const perks: { icon: LucideIcon; title: string; badge: string | null; desc: string }[] = [
     { icon: Tag, title: 'Members-Only Deals', badge: null, desc: 'Exclusive discounts and combo offers unlocked just for Wize Guyz Club members. Things that regular menu doesn\'t show.' },
@@ -84,121 +81,91 @@ export default async function ClubPage() {
   return (
     <div style={{ backgroundColor: '#232323', color: '#fff', fontFamily: "'Lato', sans-serif" }}>
       {/* HERO */}
-      <section style={{ position: 'relative', height: '500px', overflow: 'hidden' }}>
-        <Image 
-          src="https://images.unsplash.com/photo-1555939564-9c3d4f5c5b4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1920" 
-          alt="Wize Guyz Club" 
-          fill 
-          style={{ objectFit: 'cover', objectPosition: 'center 40%' }} 
-        />
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.75) 100%)' }} />
-        <div style={{ position: 'relative', zIndex: 2, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', textAlign: 'center', padding: '0 24px' }}>
+      <section className="relative min-h-[80vh] overflow-hidden bg-[url('/images/club-hero-bg.jpg')] bg-cover bg-center bg-neutral-950/80 pt-32 pb-32">
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/75" />
+        <div className="relative z-10 flex flex-col items-center justify-center h-full text-center p-8">
           <Reveal delay={0.1}>
-            <div style={{ fontFamily: "'Comic Relief', cursive", color: '#FFBF31', fontSize: '13px', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '10px' }}>
-              Join Club
-            </div>
-            <h1 style={{ fontFamily: "'Graduate', serif", color: '#fff', fontSize: 'clamp(32px, 6vw, 48px)', margin: 0 }}>
-              Wize Guyz Club
-            </h1>
-            <p style={{ fontFamily: "'Lato', sans-serif", color: '#E8E8E8', fontSize: 'clamp(16px, 3vw, 20px)', maxWidth: '640px', lineHeight: 1.75, marginBottom: '40px' }}>
-              Get exclusive deals, early access to events, birthday rewards, and more. Join the crew that gets first dibs on everything.
-            </p>
+            <div className="bg-yellow-400 text-neutral-950 font-bold px-6 py-2 rounded-full mx-auto mb-10 inline-block text-sm tracking-widest">🔥 FREE TO JOIN · ALWAYS WORTH IT</div>
           </Reveal>
           <Reveal delay={0.2}>
-            <a 
-              href={MAILCHIMP_CLUB_URL} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              style={{ fontFamily: "'Lato', sans-serif", fontWeight: 700, fontSize: '18px', backgroundColor: '#FFBF31', color: '#232323', padding: '18px 44px', borderRadius: '9999px', textDecoration: 'none', textTransform: 'uppercase', letterSpacing: '0.07em', boxShadow: '0 4px 20px rgba(255,191,49,0.5)', transition: 'background-color 0.2s' }}
-            >
-              Join the Club
-            </a>
-          </Reveal>
+            <div className="max-w-3xl mx-auto">
+              <h1 style={{ fontFamily: "'Graduate', serif", color: '#fff', fontSize: 'clamp(36px, 8vw, 64px)', lineHeight: 1.1, margin: '0 0 16px', textAlign: 'center' }}>
+                BE FIRST.
+              </h1>
+              <h1 style={{ fontFamily: "'Graduate', serif", color: '#fff', fontSize: 'clamp(36px, 8vw, 64px)', lineHeight: 1.1, margin: '0 0 16px', textAlign: 'center' }}>
+                EAT BETTER.
+              </h1>
+              <h1 style={{ fontFamily: "'Graduate', serif", color: '#fff', fontSize: 'clamp(36px, 8vw, 64px)', lineHeight: 1.1, margin: '0 0 16px', textAlign: 'center' }}>
+                WE'LL HOOK YOU UP.
+              </h1>
+              <p style={{ fontFamily: "'Lato', sans-serif", color: '#E8E8E8', fontSize: 'clamp(16px, 3vw, 20px)', maxWidth: '640px', lineHeight: 1.75, marginBottom: '40px', textAlign: 'center' }}>
+                The Wize Guyz Club is where insiders eat. Members get exclusive deals, early access
+                to specials, and first dibs on events. It&apos;s free. It&apos;s worth it.
+              </p>
+              <ClubForm />
+              <p className="text-center text-white text-xs mt-4">
+                No spam. No nonsense. Just deals and updates from your crew.
+              </p>
+            </div>
+            </Reveal>
         </div>
       </section>
 
       {/* BENEFITS */}
-      <section style={{ backgroundColor: '#A70016', padding: '88px 24px' }}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          <Reveal>
-            <h2 style={{ fontFamily: "'Graduate', serif", color: '#fff', fontSize: 'clamp(28px, 5vw, 42px)', textAlign: 'center', marginBottom: '56px' }}>
-              Club Perks
-            </h2>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '32px' }}>
-              {perks.map((perk, index) => (
-                <div key={perk.title} style={{ backgroundColor: 'rgba(255,255,255,0.08)', borderRadius: '16px', padding: '32px', border: '1px solid rgba(255,255,255,0.12)' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '20px' }}>
-                    <div style={{ width: '56px', height: '56px', borderRadius: '50%', background: 'linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                      <perk.icon size={28} color="#fff" />
-                    </div>
+      <section className="bg-white py-24">
+        <div className="max-w-6xl mx-auto px-6">
+          <Reveal delay={0.1}>
+            <div className="text-red-600 text-sm tracking-widest uppercase mb-4 text-center">MEMBER BENEFITS</div>
+            <h2 style={{ fontFamily: '"Graduate", serif' }} className="text-neutral-900 text-4xl lg:text-5xl mb-16 text-center">WHAT YOU GET WHEN YOU JOIN</h2>
+          </Reveal>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {perks.map((item, index) => (
+                <Reveal key={item.title} delay={0.2 + (index * 0.1)}>
+                <div className="relative flex flex-col items-center text-center p-8 bg-gray-50 rounded-2xl border border-gray-100 hover:-translate-y-1 transition-transform duration-300">
+                  <div className="w-16 h-16 mx-auto rounded-full bg-red-50 text-red-600 flex items-center justify-center mb-6">{item.icon && <item.icon size={24} />}</div>
                     <div>
-                      <h3 style={{ fontFamily: "'Graduate', serif", color: '#fff', fontSize: '20px', margin: '0 0 8px' }}>{perk.title}</h3>
-                      {perk.badge && (
-                        <span style={{ display: 'inline-block', fontFamily: "'Lato', sans-serif", fontWeight: 700, fontSize: '11px', color: '#FFBF31', backgroundColor: 'rgba(255,191,49,0.15)', padding: '4px 10px', borderRadius: '4px', textTransform: 'uppercase', letterSpacing: '0.05em', marginLeft: '8px' }}>
-                          {perk.badge}
+                      <h3 className="text-lg font-bold text-neutral-900 mb-3">{item.title}</h3>
+                      {item.badge && (
+                        <span className="absolute top-4 right-4 bg-yellow-400 text-neutral-900 text-[10px] font-bold px-3 py-1 rounded-full uppercase shadow-sm">
+                          {item.badge}
                         </span>
                       )}
                     </div>
-                  </div>
-                  <p style={{ fontFamily: "'Lato', sans-serif", color: '#ccc', fontSize: '15px', lineHeight: 1.7, margin: 0 }}>
-                    {perk.desc}
-                  </p>
+                  <p className="text-gray-500 text-sm leading-relaxed">{item.desc}</p>
                 </div>
+                </Reveal>
               ))}
             </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* WHAT YOU GET */}
-      <section style={{ backgroundColor: '#1a1a1a', padding: '88px 24px' }}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          <Reveal>
-            <h2 style={{ fontFamily: "'Graduate', serif", color: '#fff', fontSize: 'clamp(28px, 5vw, 42px)', textAlign: 'center', marginBottom: '56px' }}>
-              What You Get When You Join
-            </h2>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '28px' }}>
-              {[
-                { title: 'Exclusive Deals', desc: 'Members-only discounts and combo offers. Things that regular menu doesn\'t show.' },
-                { title: 'Early Access', desc: 'First dibs on new menu items, limited-time specials, and events before anyone else.' },
-                { title: 'Birthday Rewards', desc: 'Free dessert or appetizer on your birthday month when you\'re an active member.' },
-                { title: 'Crew Points', desc: 'Earn points with every order. Redeem for free food, merch, and special perks.' },
-              ].map((item) => (
-                <div key={item.title} style={{ backgroundColor: '#232323', borderRadius: '12px', padding: '32px', border: '1px solid #333' }}>
-                  <h3 style={{ fontFamily: "'Graduate', serif", color: '#FFBF31', fontSize: '20px', margin: '0 0 16px' }}>{item.title}</h3>
-                  <p style={{ fontFamily: "'Lato', sans-serif", color: '#E8E8E8', fontSize: '15px', lineHeight: 1.7, margin: 0 }}>
-                    {item.desc}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </Reveal>
         </div>
       </section>
 
       {/* WHAT'S COMING UP */}
-      <section style={{ backgroundColor: '#E8E8E8', padding: '88px 24px' }}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+      <section className="bg-gray-100 py-24">
+        <div className="max-w-7xl mx-auto px-6">
           <Reveal>
-            <h2 style={{ fontFamily: "'Graduate', serif", color: '#232323', fontSize: 'clamp(28px, 5vw, 42px)', textAlign: 'center', marginBottom: '56px' }}>
-              What&apos;s Coming Up
-            </h2>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '24px' }}>
+            <div className="text-red-600 text-sm tracking-widest uppercase mb-4 text-center">DON'T MISS THESE</div>
+            <h2 style={{ fontFamily: '"Graduate", serif' }} className="text-neutral-950 text-4xl lg:text-5xl mb-16 text-center">WHAT'S COMING UP</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
-                { title: 'Wing Wars 2025', desc: 'The biggest wing competition of the year. Members get early access to tickets and VIP seating.' },
-                { title: 'New Location', desc: 'We\'re expanding! Club members get first notice of new locations and opening events.' },
-                { title: 'Secret Menu', desc: 'Members-only access to experimental items and fan favorites that never make the regular menu.' },
-                { title: 'Merch Drop', desc: 'Wize Guyz hats, shirts, and limited edition gear. Club members get first dibs.' },
+                { emoji: '🏆', badge: 'upcoming', badgeColor: 'bg-red-600 text-white', title: 'Spring Break Wing Wars', date: '🗓️ March 15-17, 2025', desc: 'The biggest wing competition of the year returns! Three days of intense flavor battles, live music, and craft beer. Members get early access to tickets and VIP seating.' },
+                { emoji: '🌸', badge: 'save the date', badgeColor: 'bg-red-600 text-white', title: "Mother's Day Special", date: '🗓️ Sunday, May 11, 2025', desc: 'Treat mom to the best wings in town! Special family packages, complimentary desserts for moms, and exclusive member-only seating reservations.' },
+                { emoji: '🏈', badge: 'recurring', badgeColor: 'bg-neutral-600 text-white', title: 'Game Day Saturdays', date: '🗓️ Every Saturday, Fall Season', desc: 'Your game day headquarters! Special game day combos, big screen TVs, and reserved seating for club members during football season.' },
+                { emoji: '🍔', badge: 'members first', badgeColor: 'bg-yellow-400 text-neutral-950', title: 'National Burger Day', date: '🗓️ May 28, 2025', desc: 'Exclusive burger creations available only to club members! Limited edition patties, secret sauces, and complimentary sides with any burger purchase.' },
               ].map((item) => (
-                <div key={item.title} style={{ backgroundColor: '#fff', borderRadius: '12px', padding: '32px', border: '1px solid #ddd', boxShadow: '0 4px 20px rgba(0,0,0,0.08)' }}>
-                  <h3 style={{ fontFamily: "'Graduate', serif", color: '#EC1C24', fontSize: '20px', margin: '0 0 16px' }}>{item.title}</h3>
-                  <p style={{ fontFamily: "'Lato', sans-serif", color: '#555', fontSize: '15px', lineHeight: 1.7, margin: 0 }}>
-                    {item.desc}
-                  </p>
+                <div key={item.title} className="bg-white rounded-2xl shadow-lg border border-gray-100 hover:-translate-y-2 hover:scale-[1.01] hover:shadow-2xl transition-all duration-300 ease-in-out cursor-pointer">
+                  <div className="bg-neutral-900 rounded-t-2xl p-8">
+                    <div className="flex justify-center mb-6 text-5xl">{item.emoji}</div>
+                    <div className={`font-bold px-3 py-1 rounded-full uppercase text-[10px] tracking-wider inline-block mb-4 ${item.badge === 'upcoming' || item.badge === 'save the date' ? 'bg-red-600 text-white' : item.badge === 'recurring' ? 'bg-neutral-600 text-white' : 'bg-yellow-400 text-neutral-950'}`}>{item.badge}</div>
+                    <h3 style={{ fontFamily: '"Graduate", serif' }} className="text-xl text-white font-graduate font-normal uppercase mb-3">{item.title}</h3>
+                    <div className="flex items-center gap-2 text-neutral-300 text-sm">{item.date}</div>
+                  </div>
+                  <div className="p-8 pt-6">
+                    <p className="text-gray-500 text-sm leading-relaxed font-lato">{item.desc}</p>
+                  </div>
                 </div>
               ))}
             </div>
-          </Reveal>
+            </Reveal>
         </div>
       </section>
 
@@ -212,21 +179,21 @@ export default async function ClubPage() {
             
             {/* Instagram feed container */}
             <div style={{ borderRadius: '16px', overflow: 'hidden', backgroundColor: '#1a1a1a', border: '1px solid #333' }}>
-              {/* Header */}
+              {/* Instagram Header - Temporarily Disabled */}
               <div style={{ display: 'flex', alignItems: 'center', gap: '16px', padding: '20px 24px', borderBottom: '1px solid #2a2a2a' }}>
                 <div style={{ width: '48px', height: '48px', borderRadius: '50%', background: 'linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                   <Instagram size={24} color="#fff" />
                 </div>
                 <div style={{ textAlign: 'left' }}>
                   <div style={{ fontFamily: "'Lato', sans-serif", fontWeight: 700, fontSize: '15px', color: '#fff' }}>
-                    {instagramData?.username || '@wizeguyzgrille'}
+                    @wizeguyzgrille
                   </div>
                   <div style={{ fontFamily: "'Lato', sans-serif", fontSize: '13px', color: '#888' }}>
-                    {instagramData?.biography || 'Wize Guyz Grille · Western NC'}
+                    Wize Guyz Grille · Western NC
                   </div>
                 </div>
                 <a 
-                  href={instagramData?.website || 'https://instagram.com/wizeguyzgrille'} 
+                  href="https://instagram.com/wizeguyzgrille" 
                   target="_blank" 
                   rel="noopener noreferrer" 
                   style={{ marginLeft: 'auto', fontFamily: "'Lato', sans-serif", fontWeight: 700, fontSize: '13px', backgroundColor: '#E1306C', color: '#fff', padding: '8px 20px', borderRadius: '9999px', textDecoration: 'none', textTransform: 'uppercase', letterSpacing: '0.04em', whiteSpace: 'nowrap' }}
@@ -235,58 +202,40 @@ export default async function ClubPage() {
                 </a>
               </div>
 
-              {/* Dynamic Instagram Grid */}
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '3px' }}>
-                {instagramData?.posts?.map((post: InstagramPost) => (
-                  <a 
-                    key={post.id} 
-                    href={post.permalink} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    style={{ 
-                      backgroundColor: '#1a1a1a', 
-                      aspectRatio: '1', 
-                      display: 'flex', 
-                      flexDirection: 'column', 
-                      alignItems: 'center', 
-                      justifyContent: 'center', 
-                      textDecoration: 'none', 
-                      position: 'relative', 
-                      overflow: 'hidden', 
-                      cursor: 'pointer' 
-                    }}
-                  >
-                    <Image
-                      src={post.mediaType === 'VIDEO' ? (post.thumbnailUrl || '') : post.mediaUrl}
-                      alt={`Instagram post: ${post.caption?.slice(0, 50) || 'Wize Guyz Grille'}`}
-                      fill
-                      style={{ objectFit: 'cover' }}
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    />
-                    {post.isReel && (
-                      <div style={{ 
-                        position: 'absolute', 
-                        top: '8px', 
-                        right: '8px', 
-                        width: '24px', 
-                        height: '24px', 
-                        borderRadius: '50%', 
-                        backgroundColor: 'rgba(0,0,0,0.7)', 
-                        display: 'flex', 
-                        alignItems: 'center', 
-                        justifyContent: 'center' 
-                      }}>
-                        <span style={{ color: '#fff', fontSize: '12px', fontWeight: 'bold' }}>▶</span>
-                      </div>
-                    )}
-                  </a>
-                ))}
+              {/* Instagram Grid - Temporarily Disabled */}
+              <div style={{ padding: '40px 24px', textAlign: 'center' }}>
+                <div style={{ fontFamily: "'Lato', sans-serif", fontSize: '16px', color: '#888', marginBottom: '16px' }}>
+                  Instagram Feed temporarily disabled due to API rate limits.
+                </div>
+                <a 
+                  href="https://instagram.com/wizeguyzgrille" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  style={{ 
+                    fontFamily: "'Lato', sans-serif", 
+                    fontWeight: 700, 
+                    fontSize: '14px', 
+                    color: '#E1306C', 
+                    textDecoration: 'none', 
+                    display: 'inline-flex', 
+                    alignItems: 'center', 
+                    gap: '8px', 
+                    letterSpacing: '0.04em', 
+                    textTransform: 'uppercase',
+                    backgroundColor: 'rgba(225, 48, 108, 0.1)',
+                    padding: '12px 24px',
+                    borderRadius: '9999px',
+                    border: '1px solid #E1306C'
+                  }}
+                >
+                  <Instagram size={16} /> Follow us on Instagram
+                </a>
               </div>
 
               {/* Footer */}
               <div style={{ padding: '20px 24px', borderTop: '1px solid #2a2a2a', textAlign: 'center' }}>
                 <a 
-                  href={instagramData?.website || 'https://instagram.com/wizeguyzgrille'} 
+                  href="https://instagram.com/wizeguyzgrille" 
                   target="_blank" 
                   rel="noopener noreferrer" 
                   style={{ 
@@ -306,7 +255,7 @@ export default async function ClubPage() {
                 </a>
               </div>
             </div>
-          </Reveal>
+            </Reveal>
         </div>
       </section>
     </div>

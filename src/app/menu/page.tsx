@@ -58,7 +58,7 @@ export default function Menu() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-black">
       {/* Hero Section */}
       <section className="relative h-96 overflow-hidden">
         <Image
@@ -70,17 +70,17 @@ export default function Menu() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/75" />
         <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6">
           <Reveal delay={0.1}>
-            <div className="text-yellow-400 text-sm tracking-widest uppercase mb-3 font-bold">
+            <div style={{ fontFamily: "'Comic Relief', cursive", color: '#FFBF31', fontSize: '14px', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '16px' }}>
               Made Fresh. Every Order.
             </div>
           </Reveal>
           <Reveal delay={0.25}>
-            <h1 className="text-white text-4xl md:text-6xl font-bold mb-4 leading-tight" style={{ fontFamily: "'Graduate', serif" }}>
+            <h1 style={{ fontFamily: "'Graduate', serif", color: '#fff', fontSize: 'clamp(32px, 6vw, 72px)', lineHeight: 1.1, margin: '0 0 24px', textShadow: '0 2px 12px rgba(0,0,0,0.4)' }}>
               Comfort Food Crafted<br />for Big Appetites
             </h1>
           </Reveal>
           <Reveal delay={0.4}>
-            <p className="text-gray-200 text-lg max-w-2xl leading-relaxed">
+            <p style={{ fontFamily: "'Lato', sans-serif", color: '#E8E8E8', fontSize: 'clamp(15px, 2vw, 19px)', maxWidth: '640px', lineHeight: 1.75, marginBottom: '40px' }}>
               Fresh, made-to-order. Every time.<br />Pick your weapon.
             </p>
           </Reveal>
@@ -88,7 +88,7 @@ export default function Menu() {
       </section>
 
       {/* Sticky Category Navigation */}
-      <div className="sticky top-0 z-40 bg-white border-b border-gray-200 shadow-sm">
+      <div className="sticky top-0 z-40 bg-zinc-900 border-b border-zinc-700 shadow-sm">
         <div className="max-w-7xl mx-auto px-4">
           {/* Search Bar */}
           <div className="py-4">
@@ -99,7 +99,7 @@ export default function Menu() {
                 placeholder="Search menu items..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
+                className="w-full pl-10 pr-4 py-2 border border-zinc-700 bg-zinc-800 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
               />
             </div>
           </div>
@@ -111,10 +111,10 @@ export default function Menu() {
                 <button
                   key={category.id}
                   onClick={() => scrollToCategory(category.id)}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all whitespace-nowrap ${
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all whitespace-nowrap uppercase ${
                     selectedCategory === category.id
                       ? 'bg-red-600 text-white'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                      : 'bg-zinc-800 text-gray-300 hover:bg-zinc-700'
                   }`}
                 >
                   {category.name}
@@ -135,9 +135,9 @@ export default function Menu() {
           >
             {/* Category Header */}
             <div className="mb-6">
-              <h2 className="text-3xl font-bold text-gray-900 mb-2">{category.name}</h2>
+              <h2 style={{ fontFamily: "'Graduate', serif", color: '#fff', fontSize: 'clamp(22px, 3.5vw, 38px)', margin: '0 0 12px', lineHeight: 1.25 }}>{category.name}</h2>
               {category.note && (
-                <p className="text-sm text-gray-600 italic">{category.note}</p>
+                <p style={{ fontFamily: "'Comic Relief', cursive", color: '#FFBF31', fontSize: '13px', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '10px' }}>{category.note}</p>
               )}
             </div>
 
@@ -185,13 +185,82 @@ export default function Menu() {
 function MenuItemCard({ item }: { item: MenuItem }) {
   const [imageError, setImageError] = useState(false);
 
+  // Map item IDs to available images
+  const getImageSrc = (itemId: string): string | null => {
+    const imageMap: { [key: string]: string } = {
+      'mozzarella-sticks': '/images/Mozarella_Sticks.webp',
+      'basket-of-fries': '/images/Basket_of_fries.webp',
+      '6pc-wings': '/images/wings.png',
+      '12pc-wings': '/images/Hot_Wings_12pc.webp',
+      '24pc-wings': '/images/wings.png',
+      '48pc-wings': '/images/wings.png',
+   
+   
+     
+     
+      'omg-burger': '/images/OMG_Burger.webp',
+      'diablo-burger': '/images/Diablo_Burger.webp',
+      'guacamole-burger': '/images/burger-photo.png',
+    
+    
+   
+      'black-bleu-burger': '/images/Black_n_Blue_Cheese_Burger.webp',
+      'mushroom-swiss-burger': '/images/Mushroom_Swiss_Burger.webp',
+     
+     
+     
+     
+      
+
+
+
+
+     
+      'chili-dog': '/images/Chili_Cheese_Dog.webp',
+      'grilled-chicken': '/images/Grilled_Chicken_Burger.webp',
+     
+     
+      'buffalo-chicken': '/images/Fried_Chicken.webp',
+  
+      'fried-chicken': '/images/Fried_Chicken.webp',
+      'philly-cheese-steak': '/images/Philly_Cheesesteak.webp',
+      'italian-sub': '/images/Italian_Sub.webp',
+     
+      'meatball-sub': '/images/Meat_Ball_Sub.webp',
+      'french-dip': '/images/French_Dip.webp',
+  
+      'ham-cheese': '/images/Ham_n_Cheese.webp',
+      'grilled-cheese': '/images/Grilled_Cheese.webp',
+      'garden-salad': '/images/Green_Salad.webp',
+      'caesar-salad': '/images/Ceaser_Salad.webp',
+      'jalapeno-poppers': '/images/Jalepeno_Poppers.webp',
+      'seasoned-fries': '/images/Seasoned_fries.webp',
+      'onion-rings': '/images/Onion_RIngs.webp',
+     
+      'stromboli': '/images/Stromboli.webp',
+
+      'fish-n-chips': '/images/fish_n_chips.webp',
+      'ultimate-nachos': '/images/ultimate_nachos.webp',
+      'kids-burger': '/images/Kids-Burger.webp',
+      'kids-hotdog': '/images/Hot_dog.webp',
+      'smores-lava-cake': '/images/LavaCake.webp',
+      'spaghetti-meat-sauce': '/images/Pasta.webp',
+      'red-velvet-cake': '/images/Red_Velvet_Cupcake.webp',
+      'tiramisu': '/images/Tiramisu.webp'
+    };
+    
+    return imageMap[itemId] || null;
+  };
+
+  const imageSrc = getImageSrc(item.id);
+
   return (
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow">
+    <div className="bg-zinc-900 rounded-lg shadow-sm border border-zinc-700 overflow-hidden hover:shadow-md transition-shadow">
       {/* Image */}
-      <div className="relative h-48 bg-gray-100">
-        {!imageError ? (
+      <div className="relative h-48 bg-zinc-800">
+        {!imageError && imageSrc ? (
           <Image
-            src={`/images/menu/${item.id}.jpg`}
+            src={imageSrc}
             alt={item.name}
             fill
             className="object-cover"
@@ -201,10 +270,10 @@ function MenuItemCard({ item }: { item: MenuItem }) {
         ) : (
           <div className="w-full h-full flex items-center justify-center bg-gray-200">
             <div className="text-center">
-              <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-2">
+              <div className="w-16 h-16 bg-zinc-700 rounded-full flex items-center justify-center mx-auto mb-2">
                 <Star className="w-8 h-8 text-red-600" />
               </div>
-              <p className="text-gray-500 text-sm">Image coming soon</p>
+              <p className="text-gray-400 text-sm">Image coming soon</p>
             </div>
           </div>
         )}
@@ -213,17 +282,21 @@ function MenuItemCard({ item }: { item: MenuItem }) {
       {/* Content */}
       <div className="p-4">
         <div className="flex justify-between items-start mb-2">
-          <h3 className="text-lg font-semibold text-gray-900 flex-1">{item.name}</h3>
-          <span className="text-red-600 font-bold ml-2">{item.price}</span>
+          <h3 style={{ fontFamily: "'Graduate', serif", color: '#fff', fontSize: '17px', margin: '0 0 12px', lineHeight: 1.3 }}>{item.name}</h3>
+          <span style={{ fontFamily: "'Lato', sans-serif", fontWeight: 700, fontSize: '13px', color: '#EC1C24', textTransform: 'uppercase', letterSpacing: '0.05em', marginLeft: '8px' }}>{item.price}</span>
         </div>
         
         {item.description && (
-          <p className="text-sm text-gray-600 mb-2">{item.description}</p>
+          <p style={{ fontFamily: "'Lato', sans-serif", fontSize: '14px', color: '#bbb', lineHeight: 1.65, margin: '0 0 20px' }}>{item.description}</p>
         )}
         
         {item.note && (
-          <p className="text-xs text-gray-500 italic">{item.note}</p>
+          <p style={{ fontFamily: "'Comic Relief', cursive", fontSize: '11px', color: '#FFBF31', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '10px' }}>{item.note}</p>
         )}
+        
+        <a href="/store-locator" style={{ display: 'inline-block', fontFamily: "'Lato', sans-serif", fontWeight: 700, fontSize: '13px', backgroundColor: '#EC1C24', color: '#fff', padding: '10px 22px', borderRadius: '9999px', textDecoration: 'none', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+          Call Now
+        </a>
       </div>
     </div>
   );

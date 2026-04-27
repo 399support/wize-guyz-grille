@@ -9,7 +9,6 @@ import { Menu, X } from 'lucide-react';
 const navLinks = [
   { label: 'Home', path: '/' },
   { label: 'Menu', path: '/menu' },
-  { label: 'Menu 2', path: '/menu2' },
   { label: 'About & Locations', path: '/about' },
   { label: 'Wize Guyz Club', path: '/club' },
   { label: 'Contact', path: '/contact' },
@@ -78,10 +77,10 @@ export function Nav() {
           ))}
         </div>
 
-        {/* Order Now Button (desktop) */}
+        {/* Call Now Button (desktop) */}
         <div className="hidden lg:block">
           <a
-            href="#"
+            href="/store-locator"
             style={{
               fontFamily: "'Lato', sans-serif",
               fontWeight: 700,
@@ -96,7 +95,7 @@ export function Nav() {
               whiteSpace: 'nowrap',
             }}
           >
-            Order Now
+            Call Now
           </a>
         </div>
 
@@ -147,7 +146,7 @@ export function Nav() {
             </Link>
           ))}
           <a
-            href="#"
+            href="/store-locator"
             style={{
               display: 'inline-block',
               marginTop: '20px',
@@ -163,7 +162,7 @@ export function Nav() {
               letterSpacing: '0.04em',
             }}
           >
-            Order Now
+            Call Now
           </a>
         </div>
       )}

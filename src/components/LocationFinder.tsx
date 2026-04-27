@@ -150,8 +150,8 @@ export function LocationFinder() {
               </div>
               <div style={{ padding: '24px', overflowY: 'auto', flex: 1 }}>
                 <div style={{ display: 'flex', gap: '10px', marginBottom: '24px' }}>
-                  <a href="#" style={{ flex: 1, textAlign: 'center', fontFamily: "'Lato', sans-serif", fontWeight: 700, fontSize: '12px', backgroundColor: '#EC1C24', color: '#fff', padding: '11px 8px', borderRadius: '9999px', textDecoration: 'none', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                    Order Now
+                  <a href="/store-locator" style={{ flex: 1, textAlign: 'center', fontFamily: "'Lato', sans-serif", fontWeight: 700, fontSize: '12px', backgroundColor: '#EC1C24', color: '#fff', padding: '11px 8px', borderRadius: '9999px', textDecoration: 'none', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                    Call Now
                   </a>
                   <a href={mapsUrl(detailLoc)} target="_blank" rel="noreferrer" style={{ flex: 1, textAlign: 'center', fontFamily: "'Lato', sans-serif", fontWeight: 700, fontSize: '12px', backgroundColor: 'transparent', color: '#EC1C24', padding: '11px 8px', borderRadius: '9999px', textDecoration: 'none', textTransform: 'uppercase', letterSpacing: '0.05em', border: '2px solid #EC1C24', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '5px' }}>
                     <Navigation size={13} /> Directions

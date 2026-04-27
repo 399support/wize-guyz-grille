@@ -26,6 +26,8 @@ interface Location {
   status: 'Open Now' | 'Closed';
   lat: number;
   lng: number;
+  businessProfileUrl?: string;
+  directionsUrl?: string;
 }
 
 // --- Data ---
@@ -39,6 +41,8 @@ const locations: Location[] = [
     status: 'Open Now',
     lat: 35.4770,
     lng: -83.3206,
+    businessProfileUrl: 'https://maps.app.goo.gl/hfUs6uLTBcqa346j8',
+    directionsUrl: 'https://www.google.com/maps/dir/?api=1&destination=68+Big+Cove+Rd+Suite+8+Cherokee+NC+28719',
   },
   {
     id: 'bryson-city',
@@ -49,6 +53,8 @@ const locations: Location[] = [
     status: 'Open Now',
     lat: 35.4276,
     lng: -83.4474,
+    businessProfileUrl: 'https://maps.app.goo.gl/ns5WcLkh2SjVwQHM7',
+    directionsUrl: 'https://www.google.com/maps/dir/?api=1&destination=240+Main+St+Bryson+City+NC+28713',
   },
   {
     id: 'deep-creek',
@@ -59,6 +65,8 @@ const locations: Location[] = [
     status: 'Closed',
     lat: 35.4550,
     lng: -83.4420,
+    businessProfileUrl: 'https://maps.app.goo.gl/E5GoMPKNQoWZziiP6',
+    directionsUrl: 'https://www.google.com/maps/dir/?api=1&destination=1880+W+Deep+Creek+Rd+Bryson+City+NC+28713',
   },
   {
     id: 'whittier',
@@ -69,8 +77,15 @@ const locations: Location[] = [
     status: 'Open Now',
     lat: 35.4328,
     lng: -83.3596,
+    businessProfileUrl: 'https://maps.app.goo.gl/vbDUTVnBiDN2GPZr6',
+    directionsUrl: 'https://www.google.com/maps/dir/?api=1&destination=4732+US-74+Whittier+NC+28789',
   },
 ];
+
+// Helper function to clean phone number for tel: protocol
+const cleanPhoneNumber = (phone: string): string => {
+  return phone.replace(/[\s\(\)-]/g, '');
+};
 
 export default function StoreLocator() {
   const mapRef = useRef<HTMLDivElement>(null);
@@ -179,17 +194,30 @@ export default function StoreLocator() {
               <p className="text-sm text-gray-600 mb-6">{loc.address}</p>
               
               <div className="flex gap-2">
-                <button className="flex-1 bg-[#E31837] text-white px-4 py-2 rounded-md text-sm font-bold hover:bg-red-700 transition-colors">
+                <a 
+                  href={loc.businessProfileUrl || '#'} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex-1 bg-[#E31837] text-white px-4 py-2 rounded-md text-sm font-bold hover:bg-red-700 transition-colors text-center"
+                >
                   View Details
-                </button>
-                <button className="flex-1 bg-white text-[#E31837] border border-[#E31837] px-4 py-2 rounded-md text-sm font-bold hover:bg-red-50 transition-colors flex justify-center items-center gap-2">
+                </a>
+                <a 
+                  href={loc.directionsUrl || '#'} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex-1 bg-white text-[#E31837] border border-[#E31837] px-4 py-2 rounded-md text-sm font-bold hover:bg-red-50 transition-colors flex justify-center items-center gap-2"
+                >
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
                   Directions
-                </button>
-                <button className="flex-1 bg-[#E31837] text-white px-4 py-2 rounded-md text-sm font-bold hover:bg-red-700 transition-colors flex justify-center items-center gap-2">
+                </a>
+                <a 
+                  href={`tel:${cleanPhoneNumber(loc.phone)}`}
+                  className="flex-1 bg-[#E31837] text-white px-4 py-2 rounded-md text-sm font-bold hover:bg-red-700 transition-colors flex justify-center items-center gap-2"
+                >
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
                   {loc.phone}
-                </button>
+                </a>
               </div>
             </div>
           ))}
