@@ -37,6 +37,9 @@ export const metadata: Metadata = {
     description: 'Big flavor. Real beef. No shortcuts.',
     images: ['/images/burger-hero.png'],
   },
+  verification: {
+    google: 'Ch6QqANzdk69tW01LzKqmUX30xpBrdVZ5s0XRinF6BI',
+  },
 };
 
 export default function RootLayout({
@@ -46,10 +49,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
-        <meta name="google-site-verification" content="Ch6QqANzdk69tW01LzKqmUX30xpBrdVZ5s0XRinF6BI" />
-      </head>
-
       <body>
         <Script
           strategy="afterInteractive"
