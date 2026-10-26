@@ -14,6 +14,7 @@ const navLinks = [
   { label: 'Menu', path: '/menu' },
   { label: 'About & Locations', path: '/about' },
   { label: 'Wize Guyz Club', path: '/club' },
+  { label: 'Career', path: '/career' },
   { label: 'Contact', path: '/contact' },
 ];
 

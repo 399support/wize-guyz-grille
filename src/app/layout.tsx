@@ -29,13 +29,13 @@ export const metadata: Metadata = {
     title: 'Wize Guyz Grille — Pizza, Burgers, Wings in Western NC',
     description:
       'Big flavor. Real beef. No shortcuts. Four locations across the NC Smokies.',
-    images: [{ url: '/images/burger-hero.png' }],
+    images: [{ url: '/images/WizeGuyzGrille-pizza-burger-wings.jpg' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Wize Guyz Grille',
     description: 'Big flavor. Real beef. No shortcuts.',
-    images: ['/images/burger-hero.png'],
+    images: ['/images/WizeGuyzGrille-pizza-burger-wings.jpg'],
   },
   verification: {
     google: 'Ch6QqANzdk69tW01LzKqmUX30xpBrdVZ5s0XRinF6BI',
@@ -62,6 +62,11 @@ export default function RootLayout({
     gtag('config', 'G-R3LX8N59P6');
   `}
         </Script>
+        <Script
+          src="https://inkindscript.com/inkind.js"
+          strategy="afterInteractive"
+          async
+        />
         <Nav />
         <main>{children}</main>
         <Footer />

@@ -73,7 +73,15 @@ export default function Home() {
     <div>
       {/* HERO */}
       <section style={{ position: 'relative', height: 'calc(100vh - 72px)', minHeight: '580px', overflow: 'hidden' }}>
-        <Image src="/images/burger-hero.png" alt="Wize Guyz Grille signature burger" fill style={{ objectFit: 'cover', objectPosition: 'center' }} priority />
+        <video 
+  autoPlay 
+  loop 
+  muted 
+  playsInline 
+  style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }}
+>
+  <source src="/images/hero-video.mp4" type="video/mp4" />
+</video>
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.72) 100%)' }} />
         <div style={{ position: 'relative', zIndex: 2, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', textAlign: 'center', padding: '0 24px' }}>
           <Reveal delay={0.1}>
