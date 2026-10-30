@@ -103,7 +103,7 @@ export default function Menu() {
               />
             </div>
           </div>
-          
+
           {/* Category Pills */}
           <div className="pb-4 overflow-x-auto">
             <div className="flex gap-2 min-w-max justify-center sm:justify-start">
@@ -157,7 +157,7 @@ export default function Menu() {
           <Reveal>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Feeding the Whole Crew?</h2>
             <p className="text-lg md:text-xl mb-8">
-              We offer catering services for groups of all sizes. From office lunches to family gatherings, 
+              We offer catering services for groups of all sizes. From office lunches to family gatherings,
               we've got you covered with our delicious menu options.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -188,67 +188,104 @@ function MenuItemCard({ item }: { item: MenuItem }) {
   // Map item IDs to available images
   const getImageSrc = (itemId: string): string | null => {
     const imageMap: { [key: string]: string } = {
+      // Appetizers
       'mozzarella-sticks': '/images/Mozarella_Sticks.webp',
       'basket-of-fries': '/images/Basket_of_fries.webp',
-      '6pc-wings': '/images/wings.png',
-      '12pc-wings': '/images/Hot_Wings_12pc.webp',
-      '24pc-wings': '/images/wings.png',
-      '48pc-wings': '/images/wings.png',
-   
-   
-     
-     
+      'jalapeno-poppers': '/images/Jalepeno_Poppers.webp',
+      'flaming-shrimp': '/images/Flaming_Shrimp_2026.webp',
+      'spinach-dip': '/images/Spinach_Dip_2026.webp',
+      'potato-kegs': '/images/Potato_Kegs_2026.webp',
+      'pickle-fries': '/images/Pickle_Fries_2026.webp',
+      'pretzel-bites': '/images/Pretzel_Bites_2026.webp',
+      'sampler-platter': '/images/Sampler_Platter_2026.webp',
+      'ultimate-nachos': '/images/ultimate_nachos.webp',
+      'reg-nachos': '/images/Regular_Nachos_2026.webp',
+
+      // Burgers
       'omg-burger': '/images/OMG_Burger.webp',
       'diablo-burger': '/images/Diablo_Burger.webp',
       'guacamole-burger': '/images/burger-photo.png',
-    
-    
-   
       'black-bleu-burger': '/images/Black_n_Blue_Cheese_Burger.webp',
       'mushroom-swiss-burger': '/images/Mushroom_Swiss_Burger.webp',
-     
-     
-     
-     
-      
+      'philly-steak-burger': '/images/Philly_Steak_Burger_2026.webp',
+      'western-burger': '/images/Western_Burger_2026.webp',
 
-
-
-
-     
+      // Hot Dogs
       'chili-dog': '/images/Chili_Cheese_Dog.webp',
+      'nathans-dog': '/images/Nathan_Hotdog_2026.webp',
+
+      // Chicken
       'grilled-chicken': '/images/Grilled_Chicken_Burger.webp',
-     
-     
+      'hawaiian-chicken': '/images/Hawaiian_Chicken_Sandwich_2026.webp',
       'buffalo-chicken': '/images/Fried_Chicken.webp',
-  
       'fried-chicken': '/images/Fried_Chicken.webp',
+
+      // Sandwiches
       'philly-cheese-steak': '/images/Philly_Cheesesteak.webp',
       'italian-sub': '/images/Italian_Sub.webp',
-     
       'meatball-sub': '/images/Meat_Ball_Sub.webp',
       'french-dip': '/images/French_Dip.webp',
-  
+      'fish-sandwich': '/images/Fish_Sandwich_2026.webp',
       'ham-cheese': '/images/Ham_n_Cheese.webp',
       'grilled-cheese': '/images/Grilled_Cheese.webp',
+
+      // Wings
+      '6pc-wings': '/images/Wings_2026.webp',
+      '12pc-wings': '/images/Hot_Wings_12pc.webp',
+      '24pc-wings': '/images/Wings_2026.webp',
+      '48pc-wings': '/images/Wings_2026.webp',
+
+      // Sides
+      'seasoned-fries': '/images/Seasoned_fries.webp',
+      'potato-chips': '/images/Homemade_Chips_2026.webp',
+      'steak-fries': '/images/Steak_Fries_2026.webp',
+      'flaming-chips': '/images/Flaming_Chips_2026.webp',
+      'onion-rings': '/images/Onion_RIngs.webp',
+
+      // Salads
       'garden-salad': '/images/Green_Salad.webp',
       'caesar-salad': '/images/Ceaser_Salad.webp',
-      'jalapeno-poppers': '/images/Jalepeno_Poppers.webp',
-      'seasoned-fries': '/images/Seasoned_fries.webp',
-      'onion-rings': '/images/Onion_RIngs.webp',
-     
-      'stromboli': '/images/Stromboli.webp',
 
-      'fish-n-chips': '/images/fish_n_chips.webp',
-      'ultimate-nachos': '/images/ultimate_nachos.webp',
+      // Kids
       'kids-burger': '/images/Kids-Burger.webp',
       'kids-hotdog': '/images/Hot_dog.webp',
-      'smores-lava-cake': '/images/LavaCake.webp',
+
+      // Desserts
+      'tiramisu': '/images/Tiramisu.webp',
+      'smores-lava-cake': '/images/Smores_Lava_Cake_2026.webp',
+      'red-velvet-cake': '/images/Red_Velvet_2026.webp',
+      'oreo-cheesecake': '/images/Oreo_Cake_2026.webp',
+      'ultimate-choc-cake': '/images/Ultimate_Chocolate_Cake_2026.webp',
+
+      // Pasta
       'spaghetti-meat-sauce': '/images/Pasta.webp',
-      'red-velvet-cake': '/images/Red_Velvet_Cupcake.webp',
-      'tiramisu': '/images/Tiramisu.webp'
+      'spaghetti-meat-balls': '/images/Spaghetti_&_Meatballs.webp',
+      'spaghetti-marinara': '/images/Spaghetti_With_Marinara_2026.webp',
+      'stuffed-pasta-shells': '/images/Stuffed_Shells_2026.webp',
+
+      // Seafood
+      'shrimp-basket': '/images/Shrimp_Basket_2026.webp',
+      'fish-n-chips': '/images/fish_n_chips.webp',
+
+      // Specialty Pizza
+      'meatazza': '/images/Meatazza_Pizza_2026.webp',
+      'supreme': '/images/Surpreme_Pizza_2026.webp',
+      'garden-lovers': '/images/Garden_Lovers_Pizza_2026.webp',
+      'buffalo-chicken-pizza': '/images/Buffalo_chicken_Pizza.webp',
+      'philly-cheese-steak-pizza': '/images/Philly_Cheesesteak_Pizza_2026.webp',
+      'tommy-gun': '/images/Tommy_Gun_Pizza_2026.webp',
+      'spinach-alfredo': '/images/Spinach_Alfredo_Pizza_2026.webp',
+      'hawaiian-pizza': '/images/Hawaiian_Pizza_2026.webp',
+
+      // Single Slice
+      'pepperoni-slice': '/images/Pepperoni_Pizza_2026.webp',
+      'cheese-slice': '/images/Pizza_2026.webp',
+
+      // Pizza
+      'stromboli': '/images/Stromboli.webp',
+      'whole-pizza': '/images/Pizza_2026.webp'
     };
-    
+
     return imageMap[itemId] || null;
   };
 
@@ -285,15 +322,15 @@ function MenuItemCard({ item }: { item: MenuItem }) {
           <h3 style={{ fontFamily: "'Graduate', serif", color: '#fff', fontSize: '17px', margin: '0 0 12px', lineHeight: 1.3 }}>{item.name}</h3>
           <span style={{ fontFamily: "'Lato', sans-serif", fontWeight: 700, fontSize: '13px', color: '#EC1C24', textTransform: 'uppercase', letterSpacing: '0.05em', marginLeft: '8px' }}>{item.price}</span>
         </div>
-        
+
         {item.description && (
           <p style={{ fontFamily: "'Lato', sans-serif", fontSize: '14px', color: '#bbb', lineHeight: 1.65, margin: '0 0 20px' }}>{item.description}</p>
         )}
-        
+
         {item.note && (
           <p style={{ fontFamily: "'Comic Relief', cursive", fontSize: '11px', color: '#FFBF31', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '10px' }}>{item.note}</p>
         )}
-        
+
         <a href="/store-locator" style={{ display: 'inline-block', fontFamily: "'Lato', sans-serif", fontWeight: 700, fontSize: '13px', backgroundColor: '#EC1C24', color: '#fff', padding: '10px 22px', borderRadius: '9999px', textDecoration: 'none', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
           Call Now
         </a>
