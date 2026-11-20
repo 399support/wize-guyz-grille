@@ -62,7 +62,7 @@ export async function POST(req: NextRequest) {
     const transporter = nodemailer.createTransport({
       host: emailHost,
       port: parseInt(emailPort),
-      secure: false, // true for 465 (SSL), false for 587 (TLS)
+      secure: parseInt(emailPort) === 465, // true for 465 (SSL), false for 587 (TLS)
       auth: {
         user: emailUser,
         pass: emailPassword,
