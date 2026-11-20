@@ -9,13 +9,13 @@ const locationOptions = ['Cherokee', 'Bryson City', 'Deep Creek', 'Whittier', 'A
 const positionOptions = ['Back of House (Kitchen)', 'Front of House (Cashier/Service)', 'Management', 'Any'];
 
 const inputStyle: React.CSSProperties = {
-  width: '100%', fontFamily: '"Lato", sans-serif', fontSize: '15px', color: '#232323',
+  width: '100%', fontFamily: 'Lato, sans-serif', fontSize: '15px', color: '#232323',
   backgroundColor: '#F7F7F7', border: '1.5px solid #E0E0E0', borderRadius: '8px',
   padding: '14px 18px', outline: 'none', boxSizing: 'border-box',
 };
 
 const labelStyle: React.CSSProperties = {
-  display: 'block', fontFamily: '"Lato", sans-serif', fontWeight: 700, fontSize: '13px',
+  display: 'block', fontFamily: 'Lato, sans-serif', fontWeight: 700, fontSize: '13px',
   color: '#232323', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '6px',
 };
 
@@ -77,17 +77,17 @@ export default function Career() {
         <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse at center, rgba(167,0,22,0.15) 0%, transparent 70%)' }} />
         <div style={{ position: 'relative', zIndex: 1, maxWidth: '780px', margin: '0 auto' }}>
           <Reveal delay={0.1}>
-            <div style={{ fontFamily: '"Comic Relief", cursive', color: '#FFBF31', fontSize: '13px', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '16px' }}>
+            <div style={{ fontFamily: 'Comic Relief, cursive', color: '#FFBF31', fontSize: '13px', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '16px' }}>
               Join the Crew
             </div>
           </Reveal>
           <Reveal delay={0.25}>
-            <h1 style={{ fontFamily: '"Graduate", serif', color: '#fff', fontSize: 'clamp(28px, 5vw, 54px)', margin: '0 0 20px', lineHeight: 1.15 }}>
+            <h1 style={{ fontFamily: 'Graduate, serif', color: '#fff', fontSize: 'clamp(28px, 5vw, 54px)', margin: '0 0 20px', lineHeight: 1.15 }}>
               Join the Wize Guyz Crew!
             </h1>
           </Reveal>
           <Reveal delay={0.4}>
-            <p style={{ fontFamily: '"Lato", sans-serif', color: '#ccc', fontSize: '17px', lineHeight: 1.75 }}>
+            <p style={{ fontFamily: 'Lato, sans-serif', color: '#ccc', fontSize: '17px', lineHeight: 1.75 }}>
               Big Flavor. Real Opportunities. No Shortcuts.
             </p>
           </Reveal>
@@ -99,13 +99,13 @@ export default function Career() {
         <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
           <Reveal>
             <div style={{ textAlign: 'center', marginBottom: '56px' }}>
-              <p style={{ fontFamily: '"Lato", sans-serif', fontSize: '16px', color: '#444', lineHeight: 1.85, marginBottom: '24px' }}>
+              <p style={{ fontFamily: 'Lato, sans-serif', fontSize: '16px', color: '#444', lineHeight: 1.85, marginBottom: '24px' }}>
                 We&apos;re growing fast, and we&apos;re looking for energetic, hardworking people to join the Wize Guyz Grille family! Whether you&apos;re a grill master, a pizza pro, or love giving guests a reason to smile at the front counter, we have a spot for you on our team.
               </p>
-              <p style={{ fontFamily: '"Lato", sans-serif', fontSize: '16px', color: '#444', lineHeight: 1.85, marginBottom: '24px' }}>
+              <p style={{ fontFamily: 'Lato, sans-serif', fontSize: '16px', color: '#444', lineHeight: 1.85, marginBottom: '24px' }}>
                 We are currently hiring for all positions across all four of our Western North Carolina locations (Cherokee, Bryson City, Deep Creek, and Whittier).
               </p>
-              <p style={{ fontFamily: '"Lato", sans-serif', fontSize: '16px', color: '#444', lineHeight: 1.85 }}>
+              <p style={{ fontFamily: 'Lato, sans-serif', fontSize: '16px', color: '#444', lineHeight: 1.85 }}>
                 If you thrive in a fast-paced, fun environment and want to help serve up the best food in the Smokies, we want to hear from you.
               </p>
             </div>
@@ -116,8 +116,8 @@ export default function Career() {
             <Reveal delay={0.1} direction="up">
               <div style={{ textAlign: 'center', padding: '32px', backgroundColor: '#F7F7F7', borderRadius: '12px' }}>
                 <Briefcase size={40} color="#A70016" style={{ marginBottom: '16px' }} />
-                <h3 style={{ fontFamily: '"Graduate", serif', color: '#232323', fontSize: '20px', margin: '0 0 12px' }}>Real Opportunities</h3>
-                <p style={{ fontFamily: '"Lato", sans-serif', fontSize: '14px', color: '#555', lineHeight: 1.7, margin: 0 }}>
+                <h3 style={{ fontFamily: 'Graduate, serif', color: '#232323', fontSize: '20px', margin: '0 0 12px' }}>Real Opportunities</h3>
+                <p style={{ fontFamily: 'Lato, sans-serif', fontSize: '14px', color: '#555', lineHeight: 1.7, margin: 0 }}>
                   Room to grow. Whether you&apos;re starting out or looking to lead, we invest in our people.
                 </p>
               </div>
@@ -125,8 +125,8 @@ export default function Career() {
             <Reveal delay={0.2} direction="up">
               <div style={{ textAlign: 'center', padding: '32px', backgroundColor: '#F7F7F7', borderRadius: '12px' }}>
                 <MapPin size={40} color="#FFBF31" style={{ marginBottom: '16px' }} />
-                <h3 style={{ fontFamily: '"Graduate", serif', color: '#232323', fontSize: '20px', margin: '0 0 12px' }}>Four Locations</h3>
-                <p style={{ fontFamily: '"Lato", sans-serif', fontSize: '14px', color: '#555', lineHeight: 1.7, margin: 0 }}>
+                <h3 style={{ fontFamily: 'Graduate, serif', color: '#232323', fontSize: '20px', margin: '0 0 12px' }}>Four Locations</h3>
+                <p style={{ fontFamily: 'Lato, sans-serif', fontSize: '14px', color: '#555', lineHeight: 1.7, margin: 0 }}>
                   Work where you live. Cherokee, Bryson City, Deep Creek, or Whittier &mdash; your choice.
                 </p>
               </div>
@@ -134,8 +134,8 @@ export default function Career() {
             <Reveal delay={0.3} direction="up">
               <div style={{ textAlign: 'center', padding: '32px', backgroundColor: '#F7F7F7', borderRadius: '12px' }}>
                 <Users size={40} color="#EC1C24" style={{ marginBottom: '16px' }} />
-                <h3 style={{ fontFamily: '"Graduate", serif', color: '#232323', fontSize: '20px', margin: '0 0 12px' }}>Family Atmosphere</h3>
-                <p style={{ fontFamily: '"Lato", sans-serif', fontSize: '14px', color: '#555', lineHeight: 1.7, margin: 0 }}>
+                <h3 style={{ fontFamily: 'Graduate, serif', color: '#232323', fontSize: '20px', margin: '0 0 12px' }}>Family Atmosphere</h3>
+                <p style={{ fontFamily: 'Lato, sans-serif', fontSize: '14px', color: '#555', lineHeight: 1.7, margin: 0 }}>
                   More than a job. We&apos;re a family that cares about each other and our community.
                 </p>
               </div>
@@ -151,9 +151,9 @@ export default function Career() {
             {!submitted ? (
               <>
                 <div style={{ marginBottom: '36px', textAlign: 'center' }}>
-                  <div style={{ fontFamily: '"Comic Relief", cursive', color: '#EC1C24', fontSize: '13px', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '10px' }}>Ready to Apply?</div>
-                  <h2 style={{ fontFamily: '"Graduate", serif', color: '#232323', fontSize: 'clamp(20px, 3vw, 32px)', margin: '0 0 10px' }}>It&apos;s Easy.</h2>
-                  <p style={{ fontFamily: '"Lato", sans-serif', color: '#777', fontSize: '14px', lineHeight: 1.7, margin: 0 }}>
+                  <div style={{ fontFamily: 'Comic Relief, cursive', color: '#EC1C24', fontSize: '13px', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '10px' }}>Ready to Apply?</div>
+                  <h2 style={{ fontFamily: 'Graduate, serif', color: '#232323', fontSize: 'clamp(20px, 3vw, 32px)', margin: '0 0 10px' }}>It&apos;s Easy.</h2>
+                  <p style={{ fontFamily: 'Lato, sans-serif', color: '#777', fontSize: '14px', lineHeight: 1.7, margin: 0 }}>
                     We don&apos;t do long, complicated applications. Just fill out the quick info below, upload your resume or any relevant documents, and we&apos;ll be in touch!
                   </p>
                 </div>
@@ -200,12 +200,12 @@ export default function Career() {
                       />
                       <div style={{ backgroundColor: '#F7F7F7', border: '1.5px dashed #E0E0E0', borderRadius: '8px', padding: '20px', textAlign: 'center', cursor: 'pointer', transition: 'border-color 0.2s ease' }}>
                         {file ? (
-                          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', fontFamily: '"Lato', sans-serif", fontSize: '14px', color: '#232323' }}>
+                          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', fontFamily: 'Lato, sans-serif', fontSize: '14px', color: '#232323' }}>
                             <CheckCircle size={20} color="#EC1C24" />
                             {file.name}
                           </div>
                         ) : (
-                          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', fontFamily: '"Lato', sans-serif', fontSize: '14px', color: '#777' }}>
+                          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', fontFamily: 'Lato, sans-serif', fontSize: '14px', color: '#777' }}>
                             <Upload size={20} color="#A70016" />
                             Click to upload resume
                           </div>
@@ -213,11 +213,11 @@ export default function Career() {
                       </div>
                     </div>
                   </div>
-                  <button type="submit" disabled={submitting} style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', fontFamily: '"Lato', sans-serif', fontWeight: 700, fontSize: '15px', backgroundColor: '#A70016', color: '#fff', padding: '16px 40px', borderRadius: '9999px', border: 'none', cursor: submitting ? 'not-allowed' : 'pointer', textTransform: 'uppercase', letterSpacing: '0.08em', width: '100%', justifyContent: 'center', opacity: submitting ? 0.7 : 1 }}>
+                  <button type="submit" disabled={submitting} style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', fontFamily: 'Lato, sans-serif', fontWeight: 700, fontSize: '15px', backgroundColor: '#A70016', color: '#fff', padding: '16px 40px', borderRadius: '9999px', border: 'none', cursor: submitting ? 'not-allowed' : 'pointer', textTransform: 'uppercase', letterSpacing: '0.08em', width: '100%', justifyContent: 'center', opacity: submitting ? 0.7 : 1 }}>
                     <Send size={17} /> {submitting ? 'Submitting…' : 'Submit Application'}
                   </button>
                   {error && (
-                    <div style={{ marginTop: '16px', padding: '12px', backgroundColor: '#FEE2E2', border: '1px solid #EF4444', borderRadius: '8px', fontFamily: '"Lato', sans-serif', fontSize: '14px', color: '#DC2626' }}>
+                    <div style={{ marginTop: '16px', padding: '12px', backgroundColor: '#FEE2E2', border: '1px solid #EF4444', borderRadius: '8px', fontFamily: 'Lato, sans-serif', fontSize: '14px', color: '#DC2626' }}>
                       {error}
                     </div>
                   )}
@@ -226,8 +226,8 @@ export default function Career() {
             ) : (
               <div style={{ textAlign: 'center', padding: '48px 0' }}>
                 <CheckCircle size={56} color="#EC1C24" style={{ marginBottom: '20px' }} />
-                <h3 style={{ fontFamily: '"Graduate', serif", color: '#232323', fontSize: '28px', margin: '0 0 12px' }}>Application Received!</h3>
-                <p style={{ fontFamily: '"Lato', sans-serif", color: '#555', fontSize: '15px', lineHeight: 1.7, maxWidth: '400px', margin: '0 auto' }}>
+                <h3 style={{ fontFamily: 'Graduate, serif', color: '#232323', fontSize: '28px', margin: '0 0 12px' }}>Application Received!</h3>
+                <p style={{ fontFamily: 'Lato, sans-serif', color: '#555', fontSize: '15px', lineHeight: 1.7, maxWidth: '400px', margin: '0 auto' }}>
                   Thanks for your interest in joining the Wize Guyz Grille family! We&apos;ll review your application and be in touch soon.
                 </p>
               </div>
@@ -239,15 +239,15 @@ export default function Career() {
       {/* CLOSING CTA */}
       <section style={{ backgroundColor: '#A70016', padding: '88px 24px', textAlign: 'center' }}>
         <Reveal>
-          <h2 style={{ fontFamily: '"Graduate', serif", color: '#fff', fontSize: 'clamp(32px, 6vw, 64px)', margin: '0 0 12px' }}>Ready to Roll?</h2>
+          <h2 style={{ fontFamily: 'Graduate, serif', color: '#fff', fontSize: 'clamp(32px, 6vw, 64px)', margin: '0 0 12px' }}>Ready to Roll?</h2>
         </Reveal>
         <Reveal delay={0.15}>
-          <p style={{ fontFamily: '"Comic Relief', cursive", color: '#FFBF31', fontSize: '18px', margin: '0 0 44px' }}>
+          <p style={{ fontFamily: 'Comic Relief, cursive', color: '#FFBF31', fontSize: '18px', margin: '0 0 44px' }}>
             Big flavor. Great people. Real opportunity.
           </p>
         </Reveal>
         <Reveal delay={0.28}>
-          <a href="/menu" style={{ fontFamily: '"Lato', sans-serif', fontWeight: 700, fontSize: '15px', backgroundColor: '#fff', color: '#A70016', padding: '18px 40px', borderRadius: '9999px', textDecoration: 'none', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+          <a href="/menu" style={{ fontFamily: 'Lato, sans-serif', fontWeight: 700, fontSize: '15px', backgroundColor: '#fff', color: '#A70016', padding: '18px 40px', borderRadius: '9999px', textDecoration: 'none', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
             Check Out Our Menu
           </a>
         </Reveal>
