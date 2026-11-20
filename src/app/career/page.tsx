@@ -24,6 +24,7 @@ export default function Career() {
   const [file, setFile] = useState<File | null>(null);
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -38,6 +39,7 @@ export default function Career() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
+    setError(null);
     try {
       const formData = new FormData();
       formData.append('name', form.name);
@@ -53,9 +55,16 @@ export default function Career() {
         method: 'POST',
         body: formData,
       });
-      if (res.ok) setSubmitted(true);
-    } catch {
-      setSubmitted(true); // Show success regardless
+
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data.error || 'Submission failed. Please try again.');
+      }
+
+      setSubmitted(true);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'An error occurred. Please try again.');
+      console.error('Form submission error:', err);
     } finally {
       setSubmitting(false);
     }
@@ -196,7 +205,7 @@ export default function Career() {
                             {file.name}
                           </div>
                         ) : (
-                          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', fontFamily: "'Lato', sans-serif", fontSize: '14px', color: '#777' }}>
+                          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', fontFamily: "'Lato', sans-serif', fontSize: '14px', color: '#777' }}>
                             <Upload size={20} color="#A70016" />
                             Click to upload resume
                           </div>
@@ -204,9 +213,14 @@ export default function Career() {
                       </div>
                     </div>
                   </div>
-                  <button type="submit" disabled={submitting} style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', fontFamily: "'Lato', sans-serif", fontWeight: 700, fontSize: '15px', backgroundColor: '#A70016', color: '#fff', padding: '16px 40px', borderRadius: '9999px', border: 'none', cursor: submitting ? 'not-allowed' : 'pointer', textTransform: 'uppercase', letterSpacing: '0.08em', width: '100%', justifyContent: 'center', opacity: submitting ? 0.7 : 1 }}>
+                  <button type="submit" disabled={submitting} style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', fontFamily: "'Lato', sans-serif', fontWeight: 700, fontSize: '15px', backgroundColor: '#A70016', color: '#fff', padding: '16px 40px', borderRadius: '9999px', border: 'none', cursor: submitting ? 'not-allowed' : 'pointer', textTransform: 'uppercase', letterSpacing: '0.08em', width: '100%', justifyContent: 'center', opacity: submitting ? 0.7 : 1 }}>
                     <Send size={17} /> {submitting ? 'Submitting…' : 'Submit Application'}
                   </button>
+                  {error && (
+                    <div style={{ marginTop: '16px', padding: '12px', backgroundColor: '#FEE2E2', border: '1px solid #EF4444', borderRadius: '8px', fontFamily: "'Lato', sans-serif', fontSize: '14px', color: '#DC2626' }}>
+                      {error}
+                    </div>
+                  )}
                 </form>
               </>
             ) : (
@@ -233,7 +247,7 @@ export default function Career() {
           </p>
         </Reveal>
         <Reveal delay={0.28}>
-          <a href="/menu" style={{ fontFamily: "'Lato', sans-serif", fontWeight: 700, fontSize: '15px', backgroundColor: '#fff', color: '#A70016', padding: '18px 40px', borderRadius: '9999px', textDecoration: 'none', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+          <a href="/menu" style={{ fontFamily: "'Lato', sans-serif', fontWeight: 700, fontSize: '15px', backgroundColor: '#fff', color: '#A70016', padding: '18px 40px', borderRadius: '9999px', textDecoration: 'none', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
             Check Out Our Menu
           </a>
         </Reveal>
